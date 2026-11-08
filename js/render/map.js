@@ -1,0 +1,2 @@
+function drawMap(){const m=$('#mc').getContext('2d');m.fillStyle='#000';m.fillRect(0,0,480,480);const k=3;for(let y=0;y<H;y++)for(let x=0;x<W;x++)if(fog[y*W+x]){const c=COL[world[y*W+x]];m.fillStyle=`rgb(${c[0]},${c[1]},${c[2]})`;m.fillRect(x*k,y*k,k,k)}
+ m.fillStyle='#e0a83c';for(const[x,y]of ruins)if(fog[y*W+x])m.fillRect(x*k-2,y*k-2,6,6);m.fillStyle='#fff';m.fillRect(P.x/T*k-3,P.y/T*k-3,6,6)}

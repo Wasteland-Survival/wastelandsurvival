@@ -1,0 +1,22 @@
+function draw(){const cw=cv.width,ch=cv.height,x0=Math.max(0,cam.x/T|0),y0=Math.max(0,cam.y/T|0),x1=Math.min(W-1,(cam.x+cw)/T|0),y1=Math.min(H-1,(cam.y+ch)/T|0),ox=-cam.x,oy=-cam.y,lights=[];
+ g.fillStyle='#000';g.fillRect(0,0,cw,ch);
+ for(let y=y0;y<=y1;y++)for(let x=x0;x<=x1;x++){const c=COL[world[y*W+x]],v=(hash(x,y)*14)|0;g.fillStyle=`rgb(${c[0]+v},${c[1]+v},${c[2]+v})`;g.fillRect(x*T+ox|0,y*T+oy|0,T+1,T+1);const w=world[y*W+x],qx=x*T+ox|0,qy=y*T+oy|0,h2=hash(x+9,y+3);if(w==2){g.fillStyle='rgba(190,225,255,.16)';g.fillRect(qx+(performance.now()/45+x*9)%22,qy+8+(y*7%14),9,2)}else if(w==3){if(h2<.3){g.fillStyle='rgba(0,0,0,.14)';g.fillRect(qx+6,qy+9,12,2)}}else if(h2<.45){g.fillStyle=w?'rgba(15,40,20,.4)':'rgba(30,70,25,.4)';g.fillRect(qx+8,qy+18,2,5);g.fillRect(qx+12,qy+16,2,7);g.fillRect(qx+16,qy+19,2,4)}else if(h2>.97){g.fillStyle='#e8d36a';g.fillRect(qx+14,qy+14,3,3)}}
+ for(let y=y0;y<=y1;y++)for(let x=x0;x<=x1;x++){const i=y*W+x,px=x*T+ox,py=y*T+oy,o=objs.get(i),b=bld.get(i);
+  if(o){g.fillStyle='rgba(0,0,0,.28)';g.fillRect(px+4,py+T-8,T-8,6);
+   if(o.t==1){g.fillStyle='#4a3420';g.fillRect(px+13,py+14,6,16);g.fillStyle=world[i]==1?'#1f4a24':'#2f6a30';g.beginPath();g.arc(px+16,py+11,14,0,6.3);g.fill()}
+   else if(o.t==2){g.fillStyle='#7d7a70';g.fillRect(px+4,py+8,24,20);g.fillStyle='#9a978b';g.fillRect(px+6,py+8,14,8)}
+   else if(o.t==3){g.fillStyle='#2f7a35';g.beginPath();g.arc(px+16,py+18,10,0,6.3);g.fill();g.fillStyle='#b8305a';g.fillRect(px+10,py+15,3,3);g.fillRect(px+18,py+19,3,3)}
+   else if(o.t==4){g.fillStyle='#6a4a22';g.fillRect(px+5,py+10,22,16);g.fillStyle='#e0a83c';g.fillRect(px+14,py+16,4,5)}
+   else{g.fillStyle='#5a584f';g.fillRect(px+1,py+4,30,26);g.fillStyle='#6e6c62';g.fillRect(px+3,py+6,12,8)}}
+  if(b){if(b.t=='wall'){g.fillStyle='#7a5530';g.fillRect(px+1,py+1,30,30);g.fillStyle='#8f6a40';g.fillRect(px+3,py+3,26,10)}
+   else if(b.t=='bench'){g.fillStyle='#6b4a28';g.fillRect(px+2,py+10,28,14);g.fillStyle='#8a6a40';g.fillRect(px+2,py+8,28,5)}else if(b.t=='torch'){g.fillStyle='#5a3a1a';g.fillRect(px+14,py+10,4,16);g.fillStyle=Math.random()<.5?'#f0a030':'#ffd060';g.fillRect(px+12,py+5,8,7);lights.push([px+16,py+10,100])}
+   else{g.fillStyle='#555';g.fillRect(px+6,py+20,20,8);g.fillStyle=Math.random()<.5?'#f08a20':'#ffd060';g.beginPath();g.arc(px+16,py+16,8,0,6.3);g.fill();lights.push([px+16,py+16,170+Math.random()*8])}}}
+ for(const e of en){const ex=e.x+ox,ey=e.y+oy;g.fillStyle='rgba(0,0,0,.3)';g.fillRect(ex-9,ey+5,18,5);g.fillStyle=e.big?'#4a3020':'#3a3a40';g.fillRect(ex-9,ey-5,18,11);g.fillRect(ex+(P.x>e.x?6:-12),ey-9,6,7);g.fillStyle='#d03030';g.fillRect(ex+(P.x>e.x?8:-10),ey-7,2,2);g.fillStyle='#b8483a';g.fillRect(ex-9,ey-12,18*e.hp/(e.mx||30),2)}
+ const px=P.x+ox,py=P.y+oy+Math.sin(P.wk)*1.5;g.fillStyle='rgba(0,0,0,.3)';g.fillRect(px-7,py+8,14,5);g.fillStyle='#8a6a40';g.fillRect(px-6,py-4,12,13);g.fillStyle='#e0b890';g.fillRect(px-5,py-12,10,9);g.fillStyle='#222';g.fillRect(px+(P.dir>0?1:-4),py-9,3,2);
+ const[tx,ty,ti]=tileAt(),s=inv[sel];if(s&&PL.includes(s.id)&&!paused){g.globalAlpha=.5;g.fillStyle=canPlace(tx,ty,ti)?'#8fb85a':'#b8483a';g.fillRect(tx*T+ox,ty*T+oy,T,T);g.globalAlpha=1}
+ const d=dark();if(d>.02){lg.globalCompositeOperation='source-over';lg.clearRect(0,0,cw,ch);lg.fillStyle=`rgba(4,7,20,${d})`;lg.fillRect(0,0,cw,ch);lg.globalCompositeOperation='destination-out';
+  lights.push([px,py,55]);for(const[lx,ly,r]of lights){const gr=lg.createRadialGradient(lx,ly,0,lx,ly,r);gr.addColorStop(0,'rgba(0,0,0,.95)');gr.addColorStop(1,'rgba(0,0,0,0)');lg.fillStyle=gr;lg.fillRect(lx-r,ly-r,r*2,r*2)}g.drawImage(lc,0,0)}
+ if(rain){g.strokeStyle='rgba(170,190,220,.45)';g.beginPath();for(let k=0;k<(wx==3?300:140);k++){const x=(k*97+performance.now()*.5)%cw,y=(k*53+performance.now()*1.2)%ch;g.moveTo(x,y);g.lineTo(x-3,y+10)}g.stroke()}
+ if(wx==2){g.fillStyle='rgba(150,160,150,.38)';g.fillRect(0,0,cw,ch)}const vg=g.createRadialGradient(cw/2,ch/2,Math.min(cw,ch)*.35,cw/2,ch/2,Math.max(cw,ch)*.75);vg.addColorStop(0,'rgba(0,0,0,0)');vg.addColorStop(1,'rgba(0,0,0,.5)');g.fillStyle=vg;g.fillRect(0,0,cw,ch);
+ $('#bh').style.width=P.hp+'%';$('#bu').style.width=P.hu+'%';$('#bt').style.width=P.th+'%';$('#bs').style.width=P.st+'%';
+ const hr=tm*24|0,mi=((tm*24%1)*60|0);$('#clock').textContent=`${String(hr).padStart(2,'0')}:${String(mi).padStart(2,'0')} · ${hr<5||hr>=21?'Nacht':hr<8?'Morgendämmerung':hr<18?'Tag':'Sonnenuntergang'} · ${['klar','Regen','Nebel','Sturm'][wx]}`}

@@ -1,0 +1,1 @@
+let ac;function beep(f,d,t='square',v=.05){if(muted)return;try{ac=ac||new AudioContext();const o=ac.createOscillator(),gn=ac.createGain();o.type=t;o.frequency.value=f;gn.gain.value=v;gn.gain.exponentialRampToValueAtTime(.001,ac.currentTime+d);o.connect(gn);gn.connect(ac.destination);o.start();o.stop(ac.currentTime+d)}catch(e){}}

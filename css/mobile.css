@@ -1,0 +1,8 @@
+#tc{display:none;position:fixed;inset:0;pointer-events:none;z-index:2}#tc>*{pointer-events:auto}
+#joy{position:absolute;left:18px;bottom:calc(18px + env(safe-area-inset-bottom,0px));width:120px;height:120px;border-radius:50%;background:rgba(14,18,13,.5);border:2px solid var(--ln)}
+#knob{position:absolute;left:35px;top:35px;width:50px;height:50px;border-radius:50%;background:rgba(224,168,60,.55);pointer-events:none}
+#tb{position:absolute;right:14px;bottom:calc(14px + env(safe-area-inset-bottom,0px));display:grid;grid-template-columns:repeat(2,72px);gap:8px}
+#tm{position:absolute;right:12px;top:calc(60px + env(safe-area-inset-top,0px));display:grid;gap:6px}
+#tc button{width:72px;height:72px;border-radius:50%;font-size:22px;padding:0;background:rgba(14,18,13,.65)}#tm button{width:42px;height:42px;font-size:18px}
+@media (pointer:coarse){#tc{display:block}.sl{width:40px;height:40px;font-size:20px}#hint{bottom:150px}}
+@media (pointer:coarse) and (orientation:portrait){#hot{bottom:calc(150px + env(safe-area-inset-bottom,0px))}#hint{bottom:200px}}
