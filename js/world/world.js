@@ -6,4 +6,4 @@ function gen(s){seed=s;world=new Uint8Array(W*H);objs=new Map();ruins=[];
  for(let k=0;k<14;k++){const cx=(10+hash(k,77)*(W-20))|0,cy=(10+hash(k,99)*(H-20))|0;if(world[cy*W+cx]==2)continue;ruins.push([cx,cy]);
   for(let dy=-3;dy<=3;dy++)for(let dx=-3;dx<=3;dx++){const i=(cy+dy)*W+cx+dx;if(world[i]==2)continue;if(Math.max(Math.abs(dx),Math.abs(dy))==3&&hash(cx+dx,cy+dy)<.6)objs.set(i,{t:5,hp:9});else objs.delete(i)}
   objs.set(cy*W+cx,{t:4,hp:1})}
- gone.forEach(i=>objs.delete(i))}
+ gone.forEach(i=>objs.delete(i));placeTower()}

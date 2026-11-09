@@ -4,16 +4,19 @@
 <link rel="icon" href="favicon.ico" sizes="any"><link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png"><link rel="apple-touch-icon" href="assets/apple-touch-icon.png"><link rel="manifest" href="manifest.webmanifest">
 <link rel="stylesheet" href="css/style.css"><link rel="stylesheet" href="css/mobile.css"></head><body>
 <canvas id="c"></canvas>
-<div id="hud"><div class="bar"><i id="bh" style="background:#b8483a"></i></div><div class="bar"><i id="bu" style="background:#c98a3a"></i></div><div class="bar"><i id="bt" style="background:#4a8fb8"></i></div><div class="bar"><i id="bs" style="background:#8fb85a"></i></div></div>
+<div id="hud"><div class="bar"><i id="bh" style="background:#b8483a"></i><em id="lh"></em></div><div class="bar"><i id="bu" style="background:#c98a3a"></i><em id="lu"></em></div><div class="bar"><i id="bt" style="background:#4a8fb8"></i><em id="lt"></em></div><div class="bar"><i id="bs" style="background:#8fb85a"></i><em id="ls"></em></div><div class="bar"><i id="bw" style="background:#5aa8d8"></i><em id="lw"></em></div></div>
 <div id="clock"></div><div id="hint"></div><div id="hot"></div>
 <div class="panel" id="pInv"><h2>Inventar</h2><div id="ig"></div><p style="margin:8px 0 0"><button id="bSort">Sortieren</button> <button id="bDrop">Ablegen</button> <button id="bUse">Benutzen</button> <button id="bSplit">Teilen</button></p><small>Klick: verschieben · Umschalt+Klick: teilen · Rechtsklick: benutzen</small></div>
 <div class="panel" id="pCr"><h2>Herstellen</h2><div id="rl"></div></div>
 <div class="panel" id="pMap"><h2>Karte</h2><canvas id="mc" width="480" height="480" style="width:min(480px,80vw);border:1px solid var(--ln)"></canvas></div>
 <div class="panel" id="pSv"><h2>Sicherungscode</h2><textarea id="sv" spellcheck="false" placeholder="Hier einen Code einfügen und Importieren drücken"></textarea><p style="margin:8px 0"><button id="bSvC">Kopieren</button> <button id="bSvI">Importieren</button> <button id="bSvX">Schließen</button></p><small id="svm">Kopiere den Code und bewahre ihn in einer Notiz oder Datei auf.</small></div>
 <div id="tc"><div id="joy"><i id="knob"></i></div><div id="tb"><button data-a="act">⚔️</button><button data-a="pl">🧱</button><button data-a="sp">💨</button><button data-a="e">E</button></div><div id="tm"><button data-a="i">🎒</button><button data-a="c">🛠️</button><button data-a="m">🗺️</button><button data-a="Escape">⏸️</button></div></div>
-<div id="menu"><img src="assets/icon-192.png" alt=""><h1>WASTELAND SURVIVAL</h1><p id="sub">Überlebe in der Einöde. Sammle, baue, fürchte die Nacht.</p>
-<button id="bRes">Fortsetzen</button><button id="bNew">Neues Spiel</button><input id="seedIn" placeholder="Seed (leer = zufällig)"><button id="bSave">Speichern</button><button id="bSv">Sicherungscode</button><button id="bMute">Ton: an</button>
-<p>WASD bewegen · Shift sprinten · E trinken · I Inventar · C Herstellen · M Karte · 1–8 Hotbar · Linksklick sammeln/angreifen/abbauen · Rechtsklick Platzieren · ESC Pause · Touch: Joystick links, Buttons rechts (⚔️ Aktion, 🧱 Platzieren, 💨 Sprint, E)</p></div>
+<div id="menu" class="title" data-v="main"><canvas id="mbg"></canvas>
+<div id="mbox"><img src="assets/icon-192.png" alt=""><h1>WASTELAND<span>SURVIVAL</span></h1><p id="sub">Überlebe in der Einöde. Sammle, baue, fürchte die Nacht.</p>
+<div class="mv" id="vmain"><button id="bRes" class="pri">Fortsetzen</button><button id="bNew">Neues Spiel</button><input id="seedIn" placeholder="Seed (leer = zufällig)"><button data-v="set">Einstellungen</button><button data-v="ctl">Steuerung</button><button id="bSave">Speichern</button><button id="bSv">Sicherungscode</button></div>
+<div class="mv" id="vset"><label class="row"><span>Schwierigkeit</span><select id="sDiff"><option value="0">Einsteiger</option><option value="1">Normal</option><option value="2">Hart</option></select></label><label class="row"><span>Tutorial-Aufgaben</span><input type="checkbox" id="cTut" checked></label><label class="row"><span>Lautstärke</span><input type="range" id="rVol" min="0" max="100" value="60"></label><button id="bMute">Ton: an</button><button data-v="main">Zurück</button></div>
+<div class="mv" id="vctl"><p class="ctl">WASD bewegen · Shift sprinten · E trinken, braten, sammeln<br>I Inventar · C Herstellen · M Karte · 1–8 Hotbar<br>Linksklick sammeln, angreifen, abbauen · Rechtsklick platzieren · ESC Pause<br>Touch: Joystick links, Buttons rechts (⚔️ Aktion, 🧱 Platzieren, 💨 Sprint, E)</p><button data-v="main">Zurück</button></div></div></div>
+<div id="quest"></div><div id="itoast"></div><div id="svnote"></div>
 <script src="js/core/config.js"></script>
 <script src="js/data/items.js"></script>
 <script src="js/core/state.js"></script>
@@ -32,5 +35,10 @@
 <script src="js/render/map.js"></script>
 <script src="js/core/loop.js"></script>
 <script src="js/input/touch.js"></script>
+<script src="js/systems/survival.js"></script>
+<script src="js/ui/hud.js"></script>
+<script src="js/systems/tower.js"></script>
+<script src="js/ui/settings.js"></script>
+<script src="js/ui/menu-bg.js"></script>
 <script src="js/main.js"></script>
 </body></html>

@@ -4,4 +4,4 @@ function newGame(s){gone=new Set();bld=new Map();unl={};en=[];gen(s);fog=new Uin
  P={x:sx*T+16,y:sy*T+16,hp:100,hu:90,th:90,st:100,dir:1,wk:0};add('berry',3);add('wood',2);
  for(let k=0;k<18;k++){const x=(hash(k,5)*W)|0,y=(hash(k,6)*H)|0;if(world[y*W+x]!=2&&Math.hypot(x-sx,y-sy)>18&&!objs.has(y*W+x))spawnEn(x*T+16,y*T+16)}
  start()}
-function start(){P.fx=P.fx??1;P.fy=P.fy??0;run=true;paused=false;held=-1;$('#menu').style.display='none';ui()}
+function start(){P.fx=P.fx??1;P.wm=P.wm??100;P.fy=P.fy??0;run=true;paused=false;held=-1;$('#menu').style.display='none';ui()}

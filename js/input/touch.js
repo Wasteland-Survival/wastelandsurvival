@@ -8,7 +8,7 @@ mouse.x=bx-cam.x;mouse.y=by-cam.y}
 const press=k=>dispatchEvent(new KeyboardEvent('keydown',{key:k}));
 $('#tc').addEventListener('pointerdown',e=>{const b=e.target.closest('[data-a]');if(!b)return;e.preventDefault();const a=b.dataset.a;if(a=='act'){touch=1;aim();mouse.d=true}else if(a=='pl'){mouse.x=P.x-cam.x+(P.fx??1)*44;mouse.y=P.y-cam.y+(P.fy??0)*44;place()}else if(a=='sp')tsh=keys.shift=1;else press(a)});
 addEventListener('pointerup',()=>{if(touch){touch=0;mouse.d=false}if(tsh){tsh=0;keys.shift=0}});
-$('#hot').onclick=e=>{const d=e.target.closest('.sl');if(d){sel=+d.dataset.i;ui()}};
+$('#hot').onclick=e=>{const d=e.target.closest('.sl');if(d){sel=+d.dataset.i;ui();itemToast()}};
 $('#bUse').onclick=()=>{if(held>=0){const h=held;held=-1;use(h);ui()}};
 $('#bSplit').onclick=()=>{if(held>=0&&inv[held]&&inv[held].n>1){const j=[...Array(24).keys()].find(k=>!inv[k]);if(j!=null){const h=inv[held].n>>1;inv[held].n-=h;inv[j]={id:inv[held].id,n:h}}}ui()};
 $('#bSv').onclick=()=>{if(run)save();$('#sv').value=localStorage.getItem('ws1')||'';$('#pSv').classList.add('open')};

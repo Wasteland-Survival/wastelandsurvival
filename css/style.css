@@ -22,3 +22,21 @@ body{touch-action:none;-webkit-user-select:none;user-select:none}
 #menu{background:radial-gradient(circle at 50% 40%,rgba(28,36,24,.8),rgba(6,8,5,.9) 75%);backdrop-filter:blur(3px)}#menu h1{color:var(--ac);text-shadow:0 3px 0 #000,0 0 24px rgba(224,168,60,.35)}.panel{z-index:3}
 #pSv{z-index:6}#pSv textarea{display:block;width:min(520px,80vw);height:160px;background:#171c13;color:var(--tx);border:1px solid var(--ln);font:11px monospace}
 #menu img{width:96px;height:96px;margin:0 auto;border-radius:22%;box-shadow:0 6px 24px #000a}
+#mbg{position:absolute;inset:0;width:100%;height:100%;display:none}#menu.title #mbg{display:block}
+#menu{place-content:unset;place-items:center;overflow:auto}
+#mbox{position:relative;display:grid;gap:12px;justify-items:center;padding:20px;max-width:94vw;animation:rise .7s ease both}
+@keyframes rise{from{opacity:0;transform:translateY(14px)}}
+#menu h1{font-size:clamp(32px,7vw,58px);line-height:1;letter-spacing:4px}#menu h1 span{display:block;color:var(--tx);font-size:.5em;letter-spacing:14px;margin-top:8px}
+.mv{display:none;gap:10px;justify-items:center}#menu[data-v=main] #vmain,#menu[data-v=set] #vset,#menu[data-v=ctl] #vctl{display:grid}
+#menu button{width:min(300px,80vw);padding:11px;background:rgba(20,26,18,.8);transition:.15s}#menu button:hover:not(:disabled){transform:translateX(4px);background:#2b3524}
+#menu button.pri{background:linear-gradient(#e0a83c,#b8801f);color:#16130a;font-weight:600;border-color:#f0c060}
+#menu input[type=text],#seedIn{width:min(300px,80vw);box-sizing:border-box}
+.row{display:flex;gap:10px;align-items:center;justify-content:space-between;width:min(300px,80vw)}.ctl{max-width:340px;line-height:1.7;font-size:13px}
+#quest{position:fixed;left:12px;top:calc(100px + env(safe-area-inset-top,0px));max-width:220px;background:var(--pan);border:1px solid var(--ln);border-left:3px solid var(--ac);border-radius:8px;padding:6px 10px;font-size:12px;display:none}
+#quest{max-width:240px}
+#hud{width:210px}.bar{position:relative;height:18px}.bar em{position:absolute;left:7px;top:0;font:600 11px/18px 'Chakra Petch',system-ui,sans-serif;font-style:normal;color:#fff;text-shadow:0 1px 2px #000,0 0 3px #000}
+.bar.low{animation:pulse .7s infinite alternate}@keyframes pulse{to{box-shadow:0 0 10px #d04030;border-color:#d04030}}
+#quest{top:calc(140px + env(safe-area-inset-top,0px))}
+#itoast{position:fixed;left:50%;bottom:calc(76px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);display:grid;gap:2px;text-align:center;background:var(--pan);border:1px solid var(--ac);border-radius:8px;padding:6px 14px;opacity:0;transition:opacity .25s;pointer-events:none}#itoast small{opacity:.75}
+#svnote{position:fixed;left:50%;top:calc(12px + env(safe-area-inset-top,0px));transform:translateX(-50%);font-size:12px;background:var(--pan);border:1px solid var(--ln);border-radius:8px;padding:3px 10px;opacity:0;transition:opacity .4s;pointer-events:none}
+select{font:inherit;background:#171c13;color:var(--tx);border:1px solid var(--ln);border-radius:8px;padding:6px}

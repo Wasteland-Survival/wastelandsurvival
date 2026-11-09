@@ -6,3 +6,4 @@
 #tc button{width:72px;height:72px;border-radius:50%;font-size:22px;padding:0;background:rgba(14,18,13,.65)}#tm button{width:42px;height:42px;font-size:18px}
 @media (pointer:coarse){#tc{display:block}.sl{width:40px;height:40px;font-size:20px}#hint{bottom:150px}}
 @media (pointer:coarse) and (orientation:portrait){#hot{bottom:calc(150px + env(safe-area-inset-bottom,0px))}#hint{bottom:200px}}
+@media (pointer:coarse) and (orientation:portrait){#itoast{bottom:calc(200px + env(safe-area-inset-bottom,0px))}}

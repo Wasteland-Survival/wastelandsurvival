@@ -6,7 +6,7 @@ function draw(){const cw=cv.width,ch=cv.height,x0=Math.max(0,cam.x/T|0),y0=Math.
    if(o.t==1){g.fillStyle='#4a3420';g.fillRect(px+13,py+14,6,16);g.fillStyle=world[i]==1?'#1f4a24':'#2f6a30';g.beginPath();g.arc(px+16,py+11,14,0,6.3);g.fill()}
    else if(o.t==2){g.fillStyle='#7d7a70';g.fillRect(px+4,py+8,24,20);g.fillStyle='#9a978b';g.fillRect(px+6,py+8,14,8)}
    else if(o.t==3){g.fillStyle='#2f7a35';g.beginPath();g.arc(px+16,py+18,10,0,6.3);g.fill();g.fillStyle='#b8305a';g.fillRect(px+10,py+15,3,3);g.fillRect(px+18,py+19,3,3)}
-   else if(o.t==4){g.fillStyle='#6a4a22';g.fillRect(px+5,py+10,22,16);g.fillStyle='#e0a83c';g.fillRect(px+14,py+16,4,5)}
+   else if(o.t==6){g.fillStyle='#6a6a62';g.fillRect(px+10,py-34,3,64);g.fillRect(px+19,py-34,3,64);g.fillStyle='#8a8a80';for(let k=0;k<5;k++)g.fillRect(px+10,py-30+k*14,12,2);g.fillStyle=(unl.tw>=1&&Math.sin(performance.now()/250)>0)?'#ff4030':'#552018';g.fillRect(px+13,py-40,6,6)}else if(o.t==4){g.fillStyle='#6a4a22';g.fillRect(px+5,py+10,22,16);g.fillStyle='#e0a83c';g.fillRect(px+14,py+16,4,5)}
    else{g.fillStyle='#5a584f';g.fillRect(px+1,py+4,30,26);g.fillStyle='#6e6c62';g.fillRect(px+3,py+6,12,8)}}
   if(b){if(b.t=='wall'){g.fillStyle='#7a5530';g.fillRect(px+1,py+1,30,30);g.fillStyle='#8f6a40';g.fillRect(px+3,py+3,26,10)}
    else if(b.t=='bench'){g.fillStyle='#6b4a28';g.fillRect(px+2,py+10,28,14);g.fillStyle='#8a6a40';g.fillRect(px+2,py+8,28,5)}else if(b.t=='torch'){g.fillStyle='#5a3a1a';g.fillRect(px+14,py+10,4,16);g.fillStyle=Math.random()<.5?'#f0a030':'#ffd060';g.fillRect(px+12,py+5,8,7);lights.push([px+16,py+10,100])}
@@ -18,5 +18,5 @@ function draw(){const cw=cv.width,ch=cv.height,x0=Math.max(0,cam.x/T|0),y0=Math.
   lights.push([px,py,55]);for(const[lx,ly,r]of lights){const gr=lg.createRadialGradient(lx,ly,0,lx,ly,r);gr.addColorStop(0,'rgba(0,0,0,.95)');gr.addColorStop(1,'rgba(0,0,0,0)');lg.fillStyle=gr;lg.fillRect(lx-r,ly-r,r*2,r*2)}g.drawImage(lc,0,0)}
  if(rain){g.strokeStyle='rgba(170,190,220,.45)';g.beginPath();for(let k=0;k<(wx==3?300:140);k++){const x=(k*97+performance.now()*.5)%cw,y=(k*53+performance.now()*1.2)%ch;g.moveTo(x,y);g.lineTo(x-3,y+10)}g.stroke()}
  if(wx==2){g.fillStyle='rgba(150,160,150,.38)';g.fillRect(0,0,cw,ch)}const vg=g.createRadialGradient(cw/2,ch/2,Math.min(cw,ch)*.35,cw/2,ch/2,Math.max(cw,ch)*.75);vg.addColorStop(0,'rgba(0,0,0,0)');vg.addColorStop(1,'rgba(0,0,0,.5)');g.fillStyle=vg;g.fillRect(0,0,cw,ch);
- $('#bh').style.width=P.hp+'%';$('#bu').style.width=P.hu+'%';$('#bt').style.width=P.th+'%';$('#bs').style.width=P.st+'%';
+ barsUI();
  const hr=tm*24|0,mi=((tm*24%1)*60|0);$('#clock').textContent=`${String(hr).padStart(2,'0')}:${String(mi).padStart(2,'0')} · ${hr<5||hr>=21?'Nacht':hr<8?'Morgendämmerung':hr<18?'Tag':'Sonnenuntergang'} · ${['klar','Regen','Nebel','Sturm'][wx]}`}
