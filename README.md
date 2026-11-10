@@ -17,7 +17,7 @@ Lokal: `index.html` im Browser öffnen oder im Ordner `python -m http.server` au
 - `js/core`: Konfiguration, Zustand, Spielstart, Game Loop
 - `js/data`: Gegenstände, Rezepte
 - `js/world`: Weltgenerierung, Kollision
-- `js/systems`: Inventar, Audio, Speichern, Aktionen, Update, Funkturm (Spielziel), Überleben (Kälte, Schwierigkeit)
+- `js/systems`: Inventar, Audio, Speichern, Aktionen, Update, Funkturm und Absturz- und Bunker-Story (Spielziel), Überleben (Kälte, Schwierigkeit)
 - `js/ui`: Inventar-Oberfläche, Menü, HUD, Einstellungen und Tutorial, Menühintergrund
 - `js/input`: Tastatur, Maus, Touch
 - `js/render`: Zeichnen, Karte

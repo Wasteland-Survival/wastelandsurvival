@@ -10,7 +10,7 @@ function tSpawn(big){for(let t=0;t<12;t++){const a=Math.random()*6.283,x=P.x+Mat
 function towerTick(dt){if(unl.tw!=2||!tw||Math.hypot(tw.x*T+16-P.x,tw.y*T+16-P.y)>450)return;unl.tt-=dt;twW-=dt;
  if(twW<=0){twW=25;const n=Math.round((2+(dark()>.5?1:0))*DF.en);for(let k=0;k<n;k++)tSpawn();if(!unl.tb&&unl.tt<80){unl.tb=1;tSpawn(1)}flash('Eine Horde nähert sich!')}
  if(unl.tt<=0){unl.tw=3;showMenu('Der Hubschrauber setzt zur Landung an … dann bricht der Funk ab. Rauch steigt am Horizont auf. Die Geschichte ist noch nicht vorbei.')}}
-function goalText(){if(!tw)return '';if((unl.tw|0)>=3)return '<b>Funkspruch abgebrochen</b><br>Am Horizont steigt Rauch auf. Die Geschichte geht weiter …';const s=unl.tw|0,dx=tw.x*T+16-P.x,dy=tw.y*T+16-P.y,ar='→↘↓↙←↖↑↗'[(Math.round(Math.atan2(dy,dx)/.7854)+8)%8];
+function goalText(){if(!tw)return '';if((unl.tw|0)>=3)return crashGoal();const s=unl.tw|0,dx=tw.x*T+16-P.x,dy=tw.y*T+16-P.y,ar='→↘↓↙←↖↑↗'[(Math.round(Math.atan2(dy,dx)/.7854)+8)%8];
  if(s==0){const tp=unl.tp||{};return `<b>Ziel: Funkturm reparieren</b><br>${ar} ca. ${Math.round(Math.hypot(dx,dy)/T/5)*5} Kacheln entfernt<br>`+Object.keys(TN).map(k=>`${IT[k][0]} ${tp[k]|0}/${TN[k]}`).join(' · ')+'<br><small>Teile am Turm mit E einbauen</small>'}
  if(s==1)return `<b>Funkturm bereit</b><br>${ar} Am Turm E drücken, um Hilfe zu rufen. Bereite dich vor!`;
  return `<b>Notruf läuft</b><br>Bleib in der Nähe des Turms: ${Math.max(0,unl.tt|0)} s`}
