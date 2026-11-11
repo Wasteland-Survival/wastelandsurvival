@@ -1,7 +1,7 @@
-let vol=.6,tut=true;
-try{const d=JSON.parse(localStorage.getItem('ws_set'));if(d){vol=d.vol??vol;tut=d.tut??tut;muted=!!d.muted;diff=d.diff??1;DF=DIFFS[diff]}}catch(e){}
-function setSave(){try{localStorage.setItem('ws_set',JSON.stringify({vol,tut,muted,diff}))}catch(e){}}
-$('#cTut').checked=tut;$('#sDiff').value=diff;$('#sDiff').onchange=e=>{diff=+e.target.value;DF=DIFFS[diff];setSave()};$('#rVol').value=vol*100;$('#bMute').textContent='Ton: '+(muted?'aus':'an');
+let vol=.6,tut=true,hints=true;
+try{const d=JSON.parse(localStorage.getItem('ws_set'));if(d){vol=d.vol??vol;tut=d.tut??tut;muted=!!d.muted;diff=d.diff??1;hints=d.hints??true;DF=DIFFS[diff]}}catch(e){}
+function setSave(){try{localStorage.setItem('ws_set',JSON.stringify({vol,tut,muted,diff,hints}))}catch(e){}}
+$('#cTut').checked=tut;$('#sDiff').value=diff;$('#cHint').checked=hints;$('#cHint').onchange=e=>{hints=e.target.checked;setSave()};$('#sDiff').onchange=e=>{diff=+e.target.value;DF=DIFFS[diff];setSave()};$('#rVol').value=vol*100;$('#bMute').textContent='Ton: '+(muted?'aus':'an');
 $('#cTut').onchange=e=>{tut=e.target.checked;setSave();questTick()};
 $('#rVol').oninput=e=>{vol=e.target.value/100;setSave();beep(500,.08,'sine')};
 $('#bMute').addEventListener('click',setSave);

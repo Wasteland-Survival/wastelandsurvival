@@ -1,4 +1,4 @@
-function add(id,n=1){for(const s of inv)if(s&&s.id==id&&s.n<IT[id][4]){const k=Math.min(n,IT[id][4]-s.n);s.n+=k;n-=k}
+function addRaw(id,n=1){for(const s of inv)if(s&&s.id==id&&s.n<IT[id][4]){const k=Math.min(n,IT[id][4]-s.n);s.n+=k;n-=k}
  for(let i=0;i<24&&n>0;i++)if(!inv[i]){const k=Math.min(n,IT[id][4]);inv[i]={id,n:k};n-=k}return n}
 const count=id=>inv.reduce((a,s)=>a+(s&&s.id==id?s.n:0),0);
 const nearB=()=>{for(const[i,b]of bld)if(b.t=='bench'&&Math.hypot((i%W)*T+16-P.x,(i/W|0)*T+16-P.y)<120)return 1};

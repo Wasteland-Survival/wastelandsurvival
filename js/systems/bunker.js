@@ -1,4 +1,5 @@
 let bunker=null;
+const loc=(dx,dy)=>hints?`${arw(dx,dy)} ca. ${Math.round(Math.hypot(dx,dy)/T/5)*5} Kacheln`:'Such die Umgebung ab';
 const arw=(dx,dy)=>'→↘↓↙←↖↑↗'[(Math.round(Math.atan2(dy,dx)/.7854)+8)%8];
 function placeBunker(){bunker=null;const o=crash||tw;if(!o)return;
  for(let pass=0;pass<2&&!bunker;pass++)for(let r=48;r>=24&&!bunker;r-=4)for(let k=0;k<17&&!bunker;k++){const a=pass?k*.37:-1.5708+(k%2?1:-1)*Math.ceil(k/2)*.2,x=Math.round(o.x+Math.cos(a)*r),y=Math.round(o.y+Math.sin(a)*r);if(x<8||y<8||x>W-8||y>H-8)continue;let ok=1;for(let dy=-3;dy<=3;dy++)for(let dx=-3;dx<=3;dx++)if(world[(y+dy)*W+x+dx]==2)ok=0;if(ok)bunker={x,y}}
@@ -9,6 +10,6 @@ function bunkerUse(){if(!bunker||(unl.cs|0)<2||Math.hypot(bunker.x*T+16-P.x,bunk
  story('Der Bunker','Die Regale sind leer. Bring Treibstoff und Ersatzteile zum Hubschrauber.');return true}
 function bossTick(){if(!bunker||(unl.cs|0)<2||unl.ub||Math.hypot(bunker.x*T+16-P.x,bunker.y*T+16-P.y)>320)return;
  for(let t=0;t<16;t++){const a=Math.random()*6.283,x=bunker.x*T+16+Math.cos(a)*130,y=bunker.y*T+16+Math.sin(a)*130;if(!hit(x,y,9)){unl.ub=1;spawnEn(x,y);const e=en[en.length-1];e.boss=1;e.big=1;e.hp=e.mx=[160,220,280][diff];e.st='chase';flash('Ein gewaltiger Alpha-Bär versperrt den Weg!');return}}}
-function bunkerGoal(){if(unl.fin)return '<b>Kapitel 1 abgeschlossen</b><br>Im Funk meldet sich eine Stimme aus dem Süden …';if(!bunker)return '';const dx=bunker.x*T+16-P.x,dy=bunker.y*T+16-P.y;
- if(!unl.bs)return `<b>Den Bunker finden</b><br>${arw(dx,dy)} ca. ${Math.round(Math.hypot(dx,dy)/T/5)*5} Kacheln<br><small>${count('keycard')?'Du hast die Schlüsselkarte':'Ein Alpha-Bär trägt die Schlüsselkarte'}</small>`;
+function bunkerGoal(){if(unl.fin)return '<b>Abflug bereit</b><br>Sprich mit dem Piloten. Der Flug ist endgültig: nimm mit, was du brauchst.';if(!bunker)return '';const dx=bunker.x*T+16-P.x,dy=bunker.y*T+16-P.y;
+ if(!unl.bs)return `<b>Den Bunker finden</b><br>${loc(dx,dy)}<br><small>${count('keycard')?'Du hast die Schlüsselkarte':'Ein Alpha-Bär trägt die Schlüsselkarte'}</small>`;
  return '<b>Zum Hubschrauber</b><br>Bringe Treibstoff und Ersatzteile zum Wrack'}

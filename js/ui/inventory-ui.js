@@ -8,5 +8,5 @@ $('#ig').onclick=e=>{const d=e.target.closest('.sl');if(!d)return;const i=+d.dat
  else if(held<0){if(inv[i])held=i}else if(held==i)held=-1;else{const a=inv[held],b=inv[i];if(a&&b&&a.id==b.id){const k=Math.min(a.n,IT[a.id][4]-b.n);b.n+=k;a.n-=k;if(!a.n)inv[held]=null}else{inv[held]=b;inv[i]=a}held=-1}ui()};
 $('#ig').oncontextmenu=e=>{e.preventDefault();const d=e.target.closest('.sl');if(d)use(+d.dataset.i)};
 $('#bSort').onclick=()=>{const a=inv.filter(Boolean).sort((x,y)=>x.id<y.id?-1:1);inv=[...a,...Array(24-a.length).fill(null)];held=-1;ui()};
-$('#bDrop').onclick=()=>{if(held>=0){inv[held]=null;held=-1;ui()}};
+$('#bDrop').onclick=()=>{if(held>=0){const s=inv[held];if(s)dropItem(s.id,s.n,1);inv[held]=null;held=-1;ui()}};
 $('#rl').onclick=e=>{const b=e.target.closest('button');if(!b)return;const r=RC[+b.dataset.k];if(r[4]&&!nearB())return;for(const a in r[2])take(a,r[2][a]);add(r[0],r[1]);unl[r[0]]=1;beep(500,.12,'square');ui()};

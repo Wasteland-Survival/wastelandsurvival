@@ -1,2 +1,2 @@
-function save(){if(!run)return;localStorage.setItem('ws1',JSON.stringify({seed,P,inv,tm,unl,gone:[...gone],bld:[...bld],fog:Array.from(fog).join(''),en}));savedNote()}
-function load(){const d=JSON.parse(localStorage.getItem('ws1'));gone=new Set(d.gone);gen(d.seed);P=d.P;inv=d.inv;tm=d.tm;unl=d.unl;bld=new Map(d.bld);fog=Uint8Array.from(d.fog.split('').map(Number));en=d.en;start()}
+function save(){if(!run)return;localStorage.setItem('ws1',JSON.stringify({seed,P,inv,tm,unl,gone:[...gone],bld:[...bld],fog:Array.from(fog).join(''),en,drops,chap}));savedNote()}
+function load(){const d=JSON.parse(localStorage.getItem('ws1'));gone=new Set(d.gone);chap=d.chap||1;gen(d.seed);P=d.P;inv=d.inv;tm=d.tm;unl=d.unl;bld=new Map(d.bld);fog=Uint8Array.from(d.fog.split('').map(Number));en=d.en;drops=d.drops||[];start()}

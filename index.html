@@ -14,9 +14,9 @@
 <div id="menu" class="title" data-v="main"><canvas id="mbg"></canvas>
 <div id="mbox"><img src="assets/icon-192.png" alt=""><h1>WASTELAND<span>SURVIVAL</span></h1><p id="sub">Überlebe in der Einöde. Sammle, baue, fürchte die Nacht.</p>
 <div class="mv" id="vmain"><button id="bRes" class="pri">Fortsetzen</button><button id="bNew">Neues Spiel</button><input id="seedIn" placeholder="Seed (leer = zufällig)"><button data-v="set">Einstellungen</button><button data-v="ctl">Steuerung</button><button id="bSave">Speichern</button><button id="bSv">Sicherungscode</button></div>
-<div class="mv" id="vset"><label class="row"><span>Schwierigkeit</span><select id="sDiff"><option value="0">Einsteiger</option><option value="1">Normal</option><option value="2">Hart</option></select></label><label class="row"><span>Tutorial-Aufgaben</span><input type="checkbox" id="cTut" checked></label><label class="row"><span>Lautstärke</span><input type="range" id="rVol" min="0" max="100" value="60"></label><button id="bMute">Ton: an</button><button data-v="main">Zurück</button></div>
+<div class="mv" id="vset"><label class="row"><span>Schwierigkeit</span><select id="sDiff"><option value="0">Einsteiger</option><option value="1">Normal</option><option value="2">Hart</option></select></label><label class="row"><span>Ortshinweise (Pfeil, Entfernung)</span><input type="checkbox" id="cHint" checked></label><label class="row"><span>Tutorial-Aufgaben</span><input type="checkbox" id="cTut" checked></label><label class="row"><span>Lautstärke</span><input type="range" id="rVol" min="0" max="100" value="60"></label><button id="bMute">Ton: an</button><button data-v="main">Zurück</button></div>
 <div class="mv" id="vctl"><p class="ctl">WASD bewegen · Shift sprinten · E trinken, braten, sammeln<br>I Inventar · C Herstellen · M Karte · 1–8 Hotbar<br>Linksklick sammeln, angreifen, abbauen · Rechtsklick platzieren · ESC Pause<br>Touch: Joystick links, Buttons rechts (⚔️ Aktion, 🧱 Platzieren, 💨 Sprint, E)</p><button data-v="main">Zurück</button></div></div></div>
-<div id="quest"></div><div class="panel" id="pSt"><h2 id="stT"></h2><p id="stP" style="max-width:420px;line-height:1.6"></p><button id="stB">Weiter</button></div><div id="itoast"></div><div id="svnote"></div>
+<div id="quest"></div><div class="panel" id="pSt"><h2 id="stT"></h2><p id="stP" style="max-width:420px;line-height:1.6"></p><button id="stB">Weiter</button> <button id="stB2" style="display:none"></button></div><div class="panel" id="pCh"><h2>Truhe</h2><div id="cg" class="gr"></div><h2 style="margin-top:12px">Inventar</h2><div id="cp" class="gr"></div><small>Klick verschiebt den ganzen Stapel</small></div><div id="fade"></div><div id="itoast"></div><div id="svnote"></div>
 <script src="js/core/config.js"></script>
 <script src="js/data/items.js"></script>
 <script src="js/core/state.js"></script>
@@ -40,6 +40,8 @@
 <script src="js/systems/tower.js"></script>
 <script src="js/systems/story.js"></script>
 <script src="js/systems/bunker.js"></script>
+<script src="js/systems/extras.js"></script>
+<script src="js/render/sprites.js"></script>
 <script src="js/ui/settings.js"></script>
 <script src="js/ui/menu-bg.js"></script>
 <script src="js/main.js"></script>

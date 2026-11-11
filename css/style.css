@@ -40,3 +40,4 @@ body{touch-action:none;-webkit-user-select:none;user-select:none}
 #itoast{position:fixed;left:50%;bottom:calc(76px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);display:grid;gap:2px;text-align:center;background:var(--pan);border:1px solid var(--ac);border-radius:8px;padding:6px 14px;opacity:0;transition:opacity .25s;pointer-events:none}#itoast small{opacity:.75}
 #svnote{position:fixed;left:50%;top:calc(12px + env(safe-area-inset-top,0px));transform:translateX(-50%);font-size:12px;background:var(--pan);border:1px solid var(--ln);border-radius:8px;padding:3px 10px;opacity:0;transition:opacity .4s;pointer-events:none}
 select{font:inherit;background:#171c13;color:var(--tx);border:1px solid var(--ln);border-radius:8px;padding:6px}
+.gr{display:grid;grid-template-columns:repeat(8,46px);gap:4px}#fade{position:fixed;inset:0;background:#000;opacity:0;transition:opacity 1s;pointer-events:none;z-index:4}
